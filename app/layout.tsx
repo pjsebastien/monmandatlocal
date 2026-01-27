@@ -25,15 +25,24 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://monmandatlocal.fr",
+    url: "https://www.monmandatlocal.fr",
     siteName: "MonMandatLocal.fr",
     title: "MonMandatLocal.fr - Comprendre le marché immobilier local",
     description:
       "Données officielles du marché immobilier français par ville et quartier",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "MonMandatLocal.fr - Comprendre le marché immobilier local",
+    description:
+      "Données officielles du marché immobilier français par ville et quartier",
+    images: ["/logo.png"],
+  },
+  metadataBase: new URL("https://www.monmandatlocal.fr"),
   robots: {
     index: true,
     follow: true,

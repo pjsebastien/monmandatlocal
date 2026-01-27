@@ -11,7 +11,8 @@
       "Bash(npx tsc:*)",
       "Bash(npm run lint)",
       "Bash(xargs:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(find:*)"
     ]
   }
 }
