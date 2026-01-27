@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm init -y)",
+      "Bash(npm install:*)",
+      "Bash(node:*)",
+      "Bash(npm --version)",
+      "Bash(test:*)",
+      "WebFetch(domain:www.blog.monmandatlocal.fr)",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run lint)",
+      "Bash(xargs:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
