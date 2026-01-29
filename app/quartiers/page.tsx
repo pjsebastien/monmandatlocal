@@ -41,7 +41,7 @@ export default function QuartiersPage() {
           <input
             type="text"
             placeholder="Rechercher une ville..."
-            className="w-full px-6 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+            className="w-full px-6 py-4 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
             disabled
           />
           <p className="text-sm text-gray-500 mt-2">

@@ -41,9 +41,9 @@ export default function MentionsLegalesPage() {
               <p><strong>Adresse :</strong> France</p>
               <p>
                 <strong>Contact :</strong>{" "}
-                <Link href="/contact" className="text-indigo-600 hover:underline">
-                  Page de contact
-                </Link>
+                <a href="mailto:contact@monmandatlocal.fr" className="text-indigo-600 hover:underline">
+                  contact@monmandatlocal.fr
+                </a>
               </p>
             </div>
           </section>
@@ -197,10 +197,10 @@ export default function MentionsLegalesPage() {
           {/* Contact */}
           <section className="pt-6 border-t border-gray-200">
             <p className="text-gray-600">
-              Pour toute question concernant ces mentions légales, vous pouvez nous contacter via la{" "}
-              <Link href="/contact" className="text-indigo-600 hover:underline">
-                page de contact
-              </Link>.
+              Pour toute question concernant ces mentions légales, vous pouvez nous contacter à{" "}
+              <a href="mailto:contact@monmandatlocal.fr" className="text-indigo-600 hover:underline">
+                contact@monmandatlocal.fr
+              </a>.
             </p>
           </section>
         </div>

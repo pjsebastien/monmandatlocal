@@ -51,7 +51,7 @@ export default function PolitiqueConfidentialitePage() {
               </p>
               <div className="bg-gray-50 rounded-xl p-5">
                 <p><strong>Sébastien P.</strong></p>
-                <p>Contact : via la <Link href="/contact" className="text-indigo-600 hover:underline">page de contact</Link></p>
+                <p>Contact : <a href="mailto:contact@monmandatlocal.fr" className="text-indigo-600 hover:underline">contact@monmandatlocal.fr</a></p>
               </div>
             </div>
           </section>
@@ -243,10 +243,10 @@ export default function PolitiqueConfidentialitePage() {
               </div>
 
               <p>
-                Pour exercer ces droits, contactez-nous via la{" "}
-                <Link href="/contact" className="text-indigo-600 hover:underline">
-                  page de contact
-                </Link>.
+                Pour exercer ces droits, contactez-nous à{" "}
+                <a href="mailto:contact@monmandatlocal.fr" className="text-indigo-600 hover:underline">
+                  contact@monmandatlocal.fr
+                </a>.
                 Nous répondrons dans un délai d&apos;un mois.
               </p>
 
@@ -303,10 +303,10 @@ export default function PolitiqueConfidentialitePage() {
           <section className="pt-6 border-t border-gray-200">
             <p className="text-gray-600">
               Pour toute question concernant cette politique de confidentialité,
-              contactez-nous via la{" "}
-              <Link href="/contact" className="text-indigo-600 hover:underline">
-                page de contact
-              </Link>.
+              contactez-nous à{" "}
+              <a href="mailto:contact@monmandatlocal.fr" className="text-indigo-600 hover:underline">
+                contact@monmandatlocal.fr
+              </a>.
             </p>
           </section>
         </div>

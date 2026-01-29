@@ -187,7 +187,7 @@ export function EstimationForm({ ville }: EstimationFormProps) {
                 placeholder="Ex: 75"
                 min="9"
                 max="500"
-                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-lg"
+                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-lg"
               />
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
                 m²
@@ -232,7 +232,7 @@ export function EstimationForm({ ville }: EstimationFormProps) {
                 <select
                   value={etat}
                   onChange={(e) => setEtat(e.target.value as EtatBien | "")}
-                  className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white"
+                  className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white text-gray-900"
                 >
                   <option value="">Non précisé</option>
                   {Object.entries(etatLabels).map(([value, label]) => (
@@ -249,7 +249,7 @@ export function EstimationForm({ ville }: EstimationFormProps) {
                 <select
                   value={anciennete}
                   onChange={(e) => setAnciennete(e.target.value as AncienneteBien | "")}
-                  className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white"
+                  className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white text-gray-900"
                 >
                   <option value="">Non précisé</option>
                   {Object.entries(ancienneteLabels).map(([value, label]) => (
@@ -268,7 +268,7 @@ export function EstimationForm({ ville }: EstimationFormProps) {
                     <select
                       value={etage}
                       onChange={(e) => setEtage(e.target.value as EtageAppartement | "")}
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white"
+                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm bg-white text-gray-900"
                     >
                       <option value="">Non précisé</option>
                       {Object.entries(etageLabels).map(([value, label]) => (
@@ -325,7 +325,7 @@ export function EstimationForm({ ville }: EstimationFormProps) {
                       placeholder="Ex: 500"
                       min="50"
                       max="10000"
-                      className="w-full px-3 py-2.5 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
+                      className="w-full px-3 py-2.5 pr-12 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
                       m²

@@ -168,7 +168,7 @@ export function VillesClient({ villes, regions, departements }: VillesClientProp
             }}
             onFocus={() => setShowSuggestions(true)}
             placeholder="Rechercher une ville (ex: Lyon, Bordeaux, Nantes...)"
-            className={`w-full pl-12 pr-4 py-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-lg ${
+            className={`w-full pl-12 pr-4 py-4 border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-lg ${
               showSuggestions && searchSuggestions.length > 0
                 ? "rounded-t-xl rounded-b-none border-b-0"
                 : "rounded-xl"
@@ -267,7 +267,7 @@ export function VillesClient({ villes, regions, departements }: VillesClientProp
                 setSelectedRegion(e.target.value);
                 setSelectedDepartement("");
               }}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
             >
               <option value="">Toutes les régions</option>
               {regions.map((region) => (
@@ -286,7 +286,7 @@ export function VillesClient({ villes, regions, departements }: VillesClientProp
             <select
               value={selectedDepartement}
               onChange={(e) => setSelectedDepartement(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
             >
               <option value="">Tous les départements</option>
               {departements

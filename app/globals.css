@@ -7,17 +7,25 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Dark mode désactivé - le site reste en mode clair */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Force les inputs en mode clair pour éviter les problèmes de dark mode mobile */
+input,
+textarea,
+select {
+  color-scheme: light;
 }
 
 @layer utilities {
