@@ -11,6 +11,7 @@ import {
   AncienneteBien,
   EtageAppartement,
 } from "@/lib/data/territorial-types";
+import { EstimationProForm } from "@/components/EstimationProForm";
 
 interface EstimationFormProps {
   ville: Ville;
@@ -21,6 +22,7 @@ export function EstimationForm({ ville }: EstimationFormProps) {
   const [typeBien, setTypeBien] = useState<"appartement" | "maison">("appartement");
   const [surface, setSurface] = useState<string>("");
   const [showCriteresAvances, setShowCriteresAvances] = useState(false);
+  const [showProForm, setShowProForm] = useState(false);
 
   // Critères avancés
   const [etat, setEtat] = useState<EtatBien | "">("");
@@ -411,7 +413,10 @@ export function EstimationForm({ ville }: EstimationFormProps) {
             <p className="text-blue-100 text-sm mb-4">
               Un expert local peut évaluer les spécificités de votre bien.
             </p>
-            <button className="bg-white text-blue-600 font-semibold px-6 py-2.5 rounded-lg hover:bg-blue-50 transition-colors">
+            <button
+              onClick={() => setShowProForm(true)}
+              className="bg-white text-blue-600 font-semibold px-6 py-2.5 rounded-lg hover:bg-blue-50 transition-colors"
+            >
               Estimation professionnelle gratuite
             </button>
           </div>
@@ -484,6 +489,13 @@ export function EstimationForm({ ville }: EstimationFormProps) {
           </div>
         </div>
       )}
+
+      {/* Popup estimation pro */}
+      <EstimationProForm
+        ville={ville.nom}
+        isOpen={showProForm}
+        onClose={() => setShowProForm(false)}
+      />
     </div>
   );
 }
