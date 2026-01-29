@@ -9,6 +9,8 @@ import {
   formatPrix,
   formatNumber,
 } from "@/lib/data/territorial";
+import { EstimationProCTA } from "@/components/EstimationProCTA";
+import { EstimationProSticky } from "@/components/EstimationProSticky";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -290,6 +292,23 @@ export default async function VillePrixPage({ params }: Props) {
                 Prix médian : <strong>{formatPrix(dvf.prix_m2_median_global)}/m²</strong>
               </p>
             </div>
+
+            {/* CTA Estimation Pro */}
+            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-100 p-6 mt-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Besoin d&apos;une estimation précise ?
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Un expert immobilier de {ville.nom} évalue votre bien gratuitement.
+                  </p>
+                </div>
+                <EstimationProCTA ville={ville.nom} variant="sidebar">
+                  Estimation gratuite
+                </EstimationProCTA>
+              </div>
+            </div>
           </section>
         ) : (
           <section className="mb-12">
@@ -365,6 +384,24 @@ export default async function VillePrixPage({ params }: Props) {
                   </p>
                 </div>
               )}
+            </div>
+
+            {/* CTA après quartiers */}
+            <div className="mt-6 bg-white rounded-xl border border-gray-200 p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Votre quartier n&apos;est pas listé ?</p>
+                  <p className="text-sm text-gray-600">Un agent local connaît les spécificités de chaque rue.</p>
+                </div>
+              </div>
+              <EstimationProCTA ville={ville.nom} variant="secondary">
+                Contacter un expert
+              </EstimationProCTA>
             </div>
           </section>
         )}
@@ -669,12 +706,17 @@ export default async function VillePrixPage({ params }: Props) {
                   Gratuit et sans engagement.
                 </p>
               </div>
-              <Link
-                href={`/estimation/${slug}`}
-                className="inline-block bg-white text-emerald-700 font-semibold px-8 py-4 rounded-xl hover:bg-emerald-50 transition-colors whitespace-nowrap shadow-lg text-center"
-              >
-                Estimation gratuite
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href={`/estimation/${slug}`}
+                  className="inline-block bg-white text-emerald-700 font-semibold px-6 py-3 rounded-xl hover:bg-emerald-50 transition-colors whitespace-nowrap shadow-lg text-center"
+                >
+                  Estimation en ligne
+                </Link>
+                <EstimationProCTA ville={ville.nom} variant="primary">
+                  Estimation pro
+                </EstimationProCTA>
+              </div>
             </div>
           </div>
         </section>
@@ -798,6 +840,9 @@ export default async function VillePrixPage({ params }: Props) {
           </section>
         )}
       </main>
+
+      {/* CTA Sticky */}
+      <EstimationProSticky ville={ville.nom} />
     </div>
   );
 }

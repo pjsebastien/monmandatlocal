@@ -9,6 +9,8 @@ import {
   formatPrix,
 } from "@/lib/data/territorial";
 import { EstimationForm } from "./EstimationForm";
+import { EstimationProCTA } from "@/components/EstimationProCTA";
+import { EstimationProSticky } from "@/components/EstimationProSticky";
 
 type Props = {
   params: Promise<{ ville: string }>;
@@ -234,9 +236,9 @@ export default async function EstimationVillePage({ params }: Props) {
               <p className="text-sm text-gray-600 mb-4">
                 Un agent local peut affiner cette estimation gratuitement.
               </p>
-              <button className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm">
+              <EstimationProCTA ville={ville.nom} variant="sidebar">
                 Demander une estimation pro
-              </button>
+              </EstimationProCTA>
             </div>
           </div>
         </div>
@@ -253,9 +255,9 @@ export default async function EstimationVillePage({ params }: Props) {
                 en tenant compte de ses caractéristiques uniques. Gratuit et sans engagement.
               </p>
             </div>
-            <button className="bg-white text-emerald-700 font-semibold px-8 py-4 rounded-xl hover:bg-emerald-50 transition-colors whitespace-nowrap shadow-lg">
+            <EstimationProCTA ville={ville.nom} variant="primary">
               Estimation professionnelle gratuite
-            </button>
+            </EstimationProCTA>
           </div>
         </section>
 
@@ -541,9 +543,9 @@ export default async function EstimationVillePage({ params }: Props) {
               le marché de {ville.nom}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-emerald-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-emerald-700 transition-colors">
+              <EstimationProCTA ville={ville.nom} variant="secondary">
                 Demander une estimation gratuite
-              </button>
+              </EstimationProCTA>
               <Link
                 href={`/ville/${villeSlug}`}
                 className="bg-gray-100 text-gray-700 font-semibold px-8 py-3 rounded-lg hover:bg-gray-200 transition-colors"
@@ -584,6 +586,9 @@ export default async function EstimationVillePage({ params }: Props) {
           </details>
         </section>
       </main>
+
+      {/* CTA Sticky */}
+      <EstimationProSticky ville={ville.nom} />
     </div>
   );
 }
