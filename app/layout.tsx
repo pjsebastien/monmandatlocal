@@ -31,13 +31,21 @@ export const metadata: Metadata = {
     title: "MonMandatLocal.fr - Comprendre le marché immobilier local",
     description:
       "Données officielles du marché immobilier français par ville et quartier",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MonMandatLocal.fr - Données immobilières locales",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "MonMandatLocal.fr - Comprendre le marché immobilier local",
     description:
       "Données officielles du marché immobilier français par ville et quartier",
-    images: ["/logo.png"],
+    images: ["/og-image.jpg"],
   },
   metadataBase: new URL("https://www.monmandatlocal.fr"),
   alternates: {
