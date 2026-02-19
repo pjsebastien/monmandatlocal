@@ -1,15 +1,20 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { getAllVilles, loadTerritorialData } from "@/lib/data/territorial";
 import { VillesClient } from "./VillesClient";
 
 export const metadata: Metadata = {
-  title: "Toutes les villes | Prix immobilier et estimation | Mon Mandat Local",
+  title: "Toutes les villes | Prix immobilier et estimation",
   description:
     "Explorez les prix immobiliers de 134 villes françaises. Données DVF officielles et estimations de marché, prix au m², outils d'estimation. Trouvez votre ville et découvrez le marché immobilier local.",
+  alternates: {
+    canonical: "/villes",
+  },
   openGraph: {
     title: "Toutes les villes - Prix immobilier en France",
     description:
       "Consultez les prix immobiliers de 134 villes françaises : données DVF officielles et estimations de marché.",
+    url: "/villes",
   },
 };
 
@@ -40,6 +45,18 @@ export default function VillesPage() {
       {/* Header */}
       <header className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 text-white">
         <div className="max-w-7xl mx-auto px-4 py-16">
+          <nav className="mb-6" aria-label="Fil d'Ariane">
+            <ol className="flex items-center gap-2 text-slate-400 text-sm">
+              <li>
+                <Link href="/" className="hover:text-white">
+                  Accueil
+                </Link>
+              </li>
+              <li>/</li>
+              <li className="text-slate-200">Villes</li>
+            </ol>
+          </nav>
+
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Explorez le marché immobilier
           </h1>

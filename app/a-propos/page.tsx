@@ -1,9 +1,12 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "À propos",
+  title: "À propos de MonMandatLocal.fr - Données immobilières officielles",
   description:
-    "Découvrez MonMandatLocal.fr, un site d'information sur le marché immobilier local basé sur des données officielles.",
+    "Découvrez MonMandatLocal.fr, un site d'information sur le marché immobilier local basé sur des données officielles DVF et INSEE. Notre mission, nos sources et notre approche.",
+  alternates: {
+    canonical: "/a-propos",
+  },
 };
 
 export default function AProposPage() {

@@ -1,9 +1,12 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Explorer les quartiers",
+  title: "Prix immobilier par quartier - Données IRIS par ville",
   description:
-    "Accédez aux données démographiques et logement par quartier (IRIS) pour comprendre les spécificités locales.",
+    "Explorez les prix immobiliers et données démographiques par quartier (IRIS). Comparez les prix au m² entre quartiers d'une même ville. Données INSEE officielles.",
+  alternates: {
+    canonical: "/quartiers",
+  },
 };
 
 export default function QuartiersPage() {

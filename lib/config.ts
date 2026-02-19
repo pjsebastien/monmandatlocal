@@ -53,7 +53,7 @@ export const WP_CONFIG = {
  */
 export const SITE_CONFIG = {
   name: "MonMandatLocal.fr",
-  url: "https://monmandatlocal.fr",
+  url: "https://www.monmandatlocal.fr",
   description:
     "Comprendre le marché immobilier local à partir de données officielles",
 } as const;

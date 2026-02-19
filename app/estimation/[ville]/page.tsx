@@ -11,6 +11,7 @@ import {
 import { EstimationForm } from "./EstimationForm";
 import { EstimationProCTA } from "@/components/EstimationProCTA";
 import { EstimationProSticky } from "@/components/EstimationProSticky";
+import { SITE_CONFIG } from "@/lib/config";
 
 type Props = {
   params: Promise<{ ville: string }>;
@@ -38,9 +39,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Estimation immobilière ${ville.nom} : estimation gratuite en 2 minutes`,
     description: `Estimez gratuitement la valeur de votre bien à ${ville.nom}${prixM2 ? ` (prix médian : ${prixM2}/m²)` : ""}. Outil d'estimation en ligne basé sur ${ville.dvf?.nb_ventes_total || "les"} transactions réelles. Sans inscription, résultat immédiat.`,
+    alternates: {
+      canonical: `/estimation/${villeSlug}`,
+    },
     openGraph: {
       title: `Estimation immobilière ${ville.nom} : estimation gratuite en 2 minutes`,
       description: `Estimez la valeur de votre appartement ou maison à ${ville.nom}. Basé sur les prix réels du marché. Gratuit et sans engagement.`,
+      url: `/estimation/${villeSlug}`,
+      type: "website",
+      images: ["/logo.png"],
     },
   };
 }
@@ -97,7 +104,77 @@ export default async function EstimationVillePage({ params }: Props) {
     ...villesPopulaires,
   ].slice(0, 9);
 
+  // FAQ items for structured data
+  const estimationFaqs = [
+    {
+      question: `Quel est le prix au m² à ${ville.nom} ?`,
+      answer: `Le prix immobilier médian à ${ville.nom} est de ${formatPrix(dvf.prix_m2_median_global)}/m². La fourchette s'étend de ${formatPrix(dvf.prix_m2_p25)}/m² (bas de marché) à ${formatPrix(dvf.prix_m2_p75)}/m² (haut de marché).`,
+    },
+    {
+      question: "Qu'est-ce qu'une estimation immobilière ?",
+      answer: `Une estimation immobilière consiste à évaluer la valeur marchande d'un bien (appartement ou maison) en fonction des prix pratiqués sur le marché local. Elle vous donne une idée du prix auquel vous pourriez vendre votre bien, ou du montant à prévoir pour un achat.`,
+    },
+    {
+      question: `Comment est calculé le prix au m² à ${ville.nom} ?`,
+      answer: isEstimation
+        ? `Les prix de référence pour ${ville.nom} sont des estimations basées sur l'analyse de plusieurs sources de marché (portails immobiliers, observatoires des notaires). Ces données sont indicatives.`
+        : `Le prix au m² est calculé à partir des transactions immobilières réelles enregistrées par les notaires. Pour ${ville.nom}, nous utilisons les données officielles DVF (Demandes de Valeurs Foncières) qui recensent ${dvf.nb_ventes_total || "les"} ventes réalisées en 2025.`,
+    },
+    {
+      question: "Cette estimation est-elle gratuite et sans engagement ?",
+      answer: `Oui, notre outil d'estimation en ligne est 100% gratuit, sans inscription et sans engagement. Vous obtenez un résultat instantané basé sur les données du marché de ${ville.nom}.`,
+    },
+  ];
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Accueil",
+        item: SITE_CONFIG.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Estimation",
+        item: `${SITE_CONFIG.url}/estimation`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: ville.nom,
+        item: `${SITE_CONFIG.url}/estimation/${villeSlug}`,
+      },
+    ],
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: estimationFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white">
@@ -590,6 +667,7 @@ export default async function EstimationVillePage({ params }: Props) {
       {/* CTA Sticky */}
       <EstimationProSticky ville={ville.nom} />
     </div>
+    </>
   );
 }
 

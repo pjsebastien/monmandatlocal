@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     description:
       "Actualités et conseils sur le marché immobilier local. Guides pratiques pour acheteurs et vendeurs.",
     type: "website",
-    url: "https://monmandatlocal.fr/blog",
+    url: "https://www.monmandatlocal.fr/blog",
   },
   alternates: {
-    canonical: "https://monmandatlocal.fr/blog",
+    canonical: "https://www.monmandatlocal.fr/blog",
   },
 };
 
@@ -40,11 +40,11 @@ export default async function BlogPage({ searchParams }: Props) {
     "@type": "Blog",
     name: "Blog MonMandatLocal.fr",
     description: "Actualités et conseils sur le marché immobilier local",
-    url: "https://monmandatlocal.fr/blog",
+    url: "https://www.monmandatlocal.fr/blog",
     publisher: {
       "@type": "Organization",
       name: "MonMandatLocal.fr",
-      url: "https://monmandatlocal.fr",
+      url: "https://www.monmandatlocal.fr",
     },
   };
 
@@ -58,6 +58,18 @@ export default async function BlogPage({ searchParams }: Props) {
       {/* Header avec gradient */}
       <header className="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
         <div className="max-w-5xl mx-auto px-4 py-16 text-center">
+          <nav className="mb-6 text-left" aria-label="Fil d'Ariane">
+            <ol className="flex items-center gap-2 text-blue-200 text-sm">
+              <li>
+                <Link href="/" className="hover:text-white">
+                  Accueil
+                </Link>
+              </li>
+              <li>/</li>
+              <li className="text-blue-100">Blog</li>
+            </ol>
+          </nav>
+
           <span className="inline-block bg-white/20 text-white text-sm font-medium px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
             Actualités immobilières
           </span>

@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "Méthodologie",
   description:
     "Découvrez comment MonMandatLocal.fr traite et présente les données immobilières.",
+  alternates: {
+    canonical: "/methodologie",
+  },
 };
 
 export default function MethodologiePage() {

@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "Sources de données",
   description:
     "Découvrez les sources officielles utilisées par MonMandatLocal.fr : DVF, INSEE, cadastre.",
+  alternates: {
+    canonical: "/sources",
+  },
 };
 
 export default function SourcesPage() {

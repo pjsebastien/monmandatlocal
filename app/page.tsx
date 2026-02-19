@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getWPPosts } from "@/lib/data/wordpress";
 import { ArticleCard } from "@/components/ArticleCard";
 import { getAllVilles, getVillesAvecDVF, generateSlug, formatPrix, formatNumber } from "@/lib/data/territorial";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default async function HomePage() {
   // Récupérer les données
@@ -21,8 +28,42 @@ export default async function HomePage() {
     .sort((a, b) => (b.dvf?.nb_ventes_total || 0) - (a.dvf?.nb_ventes_total || 0))
     .slice(0, 8);
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "MonMandatLocal.fr",
+    url: "https://www.monmandatlocal.fr",
+    logo: "https://www.monmandatlocal.fr/logo.png",
+    description:
+      "Données officielles du marché immobilier français par ville et quartier. Prix au m², estimations, statistiques DVF et INSEE.",
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "MonMandatLocal.fr",
+    url: "https://www.monmandatlocal.fr",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://www.monmandatlocal.fr/villes?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700 text-white">
         <div className="container mx-auto px-4 py-16 md:py-24">

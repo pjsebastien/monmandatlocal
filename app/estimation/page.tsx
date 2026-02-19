@@ -4,13 +4,17 @@ import { getAllVilles } from "@/lib/data/territorial";
 import { EstimationClient } from "./EstimationClient";
 
 export const metadata: Metadata = {
-  title: "Estimation immobilière gratuite | Mon Mandat Local",
+  title: "Estimation immobilière gratuite",
   description:
     "Estimez la valeur de votre bien immobilier gratuitement. Données DVF 2025 officielles et estimations de marché pour 134 villes françaises. Appartements et maisons.",
+  alternates: {
+    canonical: "/estimation",
+  },
   openGraph: {
     title: "Estimation immobilière gratuite",
     description:
       "Estimez la valeur de votre bien immobilier gratuitement avec les données DVF officielles et estimations de marché.",
+    url: "/estimation",
   },
 };
 

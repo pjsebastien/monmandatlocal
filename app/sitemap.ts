@@ -7,71 +7,82 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://www.monmandatlocal.fr";
 
+  // Date fixe pour les pages statiques (date du dernier déploiement significatif)
+  // Évite de signaler à Google que toutes les pages changent à chaque build
+  const staticDate = new Date("2026-02-19");
+  const dataDate = new Date("2026-01-29");
+
   // Pages statiques du site
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/villes`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/quartiers`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/estimation`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "daily",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/a-propos`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/sources`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/methodologie`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/faq`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: staticDate,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/mentions-legales`,
-      lastModified: new Date(),
+      lastModified: staticDate,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/politique-confidentialite`,
+      lastModified: staticDate,
       changeFrequency: "yearly",
       priority: 0.3,
     },
@@ -97,7 +108,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const villes = getAllVilles();
   const villePages: MetadataRoute.Sitemap = villes.map((ville) => ({
     url: `${baseUrl}/ville/${generateSlug(ville.nom)}`,
-    lastModified: new Date(),
+    lastModified: dataDate,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
@@ -105,7 +116,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Pages estimation par ville
   const estimationVillePages: MetadataRoute.Sitemap = villes.map((ville) => ({
     url: `${baseUrl}/estimation/${generateSlug(ville.nom)}`,
-    lastModified: new Date(),
+    lastModified: dataDate,
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));

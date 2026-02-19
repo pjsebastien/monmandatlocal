@@ -101,7 +101,7 @@ export function Header() {
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Image
               src="/logo.png"
               alt="MonMandatLocal.fr"
@@ -110,18 +110,18 @@ export function Header() {
               className="h-[42px] md:h-[60px] w-auto"
               priority
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
                 className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -408,14 +408,14 @@ export function Header() {
             {/* Mobile Links */}
             <div className="flex flex-col gap-2">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

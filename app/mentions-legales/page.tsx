@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales du site MonMandatLocal.fr - Éditeur, hébergement et conditions d'utilisation",
+  alternates: {
+    canonical: "/mentions-legales",
+  },
 };
 
 export default function MentionsLegalesPage() {

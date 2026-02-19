@@ -1,9 +1,13 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "FAQ",
+  title: "FAQ - Prix immobilier, données DVF et estimation",
   description:
-    "Questions fréquentes sur MonMandatLocal.fr et les données immobilières.",
+    "Trouvez les réponses à vos questions sur les prix immobiliers, les données DVF, les estimations et la méthodologie de MonMandatLocal.fr. Sources officielles, prix médian, IRIS.",
+  alternates: {
+    canonical: "/faq",
+  },
 };
 
 const faqs = [
@@ -60,41 +64,77 @@ const faqs = [
 ];
 
 export default function FAQPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-4xl font-bold mb-4">Questions fréquentes</h1>
-      <p className="text-xl text-gray-600 mb-8">
-        Retrouvez les réponses aux questions les plus courantes.
-      </p>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
 
-      <div className="space-y-6">
-        {faqs.map((faq, index) => (
-          <div
-            key={index}
-            className="bg-white border border-gray-200 rounded-lg p-6"
-          >
-            <h2 className="text-lg font-bold mb-3">{faq.question}</h2>
-            <p className="text-gray-700">{faq.answer}</p>
-          </div>
-        ))}
-      </div>
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        {/* Breadcrumb */}
+        <nav className="mb-6" aria-label="Fil d'Ariane">
+          <ol className="flex items-center gap-2 text-sm text-gray-500">
+            <li>
+              <Link href="/" className="hover:text-indigo-600">
+                Accueil
+              </Link>
+            </li>
+            <li>/</li>
+            <li className="text-gray-900">FAQ</li>
+          </ol>
+        </nav>
 
-      {/* Contact */}
-      <section className="mt-12 bg-blue-50 border border-blue-200 p-6 rounded-lg">
-        <h2 className="text-xl font-bold mb-4 text-blue-900">
-          Vous avez une autre question ?
-        </h2>
-        <p className="text-blue-800 mb-4">
-          Si vous n'avez pas trouvé la réponse à votre question, n'hésitez pas
-          à nous contacter.
+        <h1 className="text-4xl font-bold mb-4">
+          Questions fréquentes sur les prix immobiliers
+        </h1>
+        <p className="text-xl text-gray-600 mb-8">
+          Retrouvez les réponses aux questions les plus courantes sur les données
+          immobilières, les prix au m² et nos outils d&apos;estimation.
         </p>
-        <a
-          href="/contact"
-          className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Nous contacter
-        </a>
-      </section>
-    </div>
+
+        <div className="space-y-6">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-200 rounded-lg p-6"
+            >
+              <h2 className="text-lg font-bold mb-3">{faq.question}</h2>
+              <p className="text-gray-700">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Contact */}
+        <section className="mt-12 bg-blue-50 border border-blue-200 p-6 rounded-lg">
+          <h2 className="text-xl font-bold mb-4 text-blue-900">
+            Vous avez une autre question ?
+          </h2>
+          <p className="text-blue-800 mb-4">
+            Si vous n&apos;avez pas trouvé la réponse à votre question,
+            n&apos;hésitez pas à nous contacter.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Nous contacter
+          </Link>
+        </section>
+      </div>
+    </>
   );
 }

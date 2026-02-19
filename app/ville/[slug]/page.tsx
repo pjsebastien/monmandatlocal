@@ -11,6 +11,7 @@ import {
 } from "@/lib/data/territorial";
 import { EstimationProCTA } from "@/components/EstimationProCTA";
 import { EstimationProSticky } from "@/components/EstimationProSticky";
+import { SITE_CONFIG } from "@/lib/config";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -42,9 +43,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Prix immobilier ${ville.nom} : prix au m² et données du marché`,
     description,
+    alternates: {
+      canonical: `/ville/${slug}`,
+    },
     openGraph: {
       title: `Prix immobilier ${ville.nom} : prix au m² et données du marché`,
       description,
+      url: `/ville/${slug}`,
+      type: "website",
+      images: ["/logo.png"],
     },
   };
 }
@@ -109,7 +116,75 @@ export default async function VillePrixPage({ params }: Props) {
     ...villesPopulaires,
   ].slice(0, 9);
 
+  // FAQ items for structured data
+  const villeFaqs = [
+    {
+      question: "Comment sont calculés les prix immobiliers affichés ?",
+      answer: isEstimation
+        ? `Pour ${ville.nom}, nous affichons des estimations basées sur l'analyse de multiples sources du marché (MeilleursAgents, SeLoger, Notaires de France). Ces prix sont indicatifs et peuvent différer des transactions réelles.`
+        : `Les prix proviennent de la base DVF (Demandes de Valeurs Foncières), qui recense toutes les transactions immobilières enregistrées par les notaires. Ce sont des données officielles et vérifiables, basées sur ${formatNumber(dvf?.nb_ventes_total)} ventes en 2025.`,
+    },
+    {
+      question: `Quel est le prix au m² à ${ville.nom} ?`,
+      answer: hasDVF
+        ? `Le prix immobilier médian à ${ville.nom} est de ${formatPrix(dvf.prix_m2_median_global)}/m². La fourchette s'étend de ${formatPrix(dvf.prix_m2_p25)}/m² à ${formatPrix(dvf.prix_m2_p75)}/m².`
+        : `Les données de prix ne sont pas encore disponibles pour ${ville.nom}.`,
+    },
+    {
+      question: "Que signifie le prix médian au m² ?",
+      answer: `Le prix médian est la valeur qui sépare les transactions en deux parts égales : 50% des biens se sont vendus au-dessus de ce prix, 50% en-dessous. C'est un indicateur plus fiable que la moyenne car il n'est pas influencé par les ventes exceptionnelles.`,
+    },
+  ];
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Accueil",
+        item: SITE_CONFIG.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Villes",
+        item: `${SITE_CONFIG.url}/villes`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: ville.nom,
+        item: `${SITE_CONFIG.url}/ville/${slug}`,
+      },
+    ],
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: villeFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white">
@@ -844,6 +919,7 @@ export default async function VillePrixPage({ params }: Props) {
       {/* CTA Sticky */}
       <EstimationProSticky ville={ville.nom} />
     </div>
+    </>
   );
 }
 

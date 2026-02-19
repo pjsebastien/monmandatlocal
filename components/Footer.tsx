@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const footerLinks = {
   explorer: {
     title: "Explorer",
@@ -35,9 +37,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <a href="/" className="text-xl font-bold text-blue-600">
+            <Link href="/" className="text-xl font-bold text-blue-600">
               MonMandatLocal.fr
-            </a>
+            </Link>
             <p className="mt-4 text-sm text-gray-600">
               Comprendre le marché immobilier local à partir de données
               officielles et factuelles.
@@ -53,12 +55,12 @@ export function Footer() {
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-sm text-gray-600 hover:text-blue-600 transition-colors"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

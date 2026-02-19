@@ -2,8 +2,12 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contactez l'équipe MonMandatLocal.fr",
+  title: "Contactez-nous - MonMandatLocal.fr",
+  description:
+    "Une question sur les prix immobiliers ou nos données ? Contactez l'équipe MonMandatLocal.fr. Signalement d'erreur, suggestions et demandes d'information.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {

@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description: "Politique de confidentialité de MonMandatLocal.fr - Gestion des données personnelles et cookies",
+  alternates: {
+    canonical: "/politique-confidentialite",
+  },
 };
 
 export default function PolitiqueConfidentialitePage() {

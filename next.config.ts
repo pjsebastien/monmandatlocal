@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   // Configuration SEO-optimisée
   poweredByHeader: false,
   compress: true,
+  trailingSlash: false,
 
   // Configuration des images externes (WordPress)
   images: {
