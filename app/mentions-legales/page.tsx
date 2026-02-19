@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/mentions-legales",
   },
+  openGraph: {
+    title: "Mentions légales - MonMandatLocal.fr",
+    description:
+      "Mentions légales du site MonMandatLocal.fr - Éditeur, hébergement et conditions d'utilisation.",
+    url: "/mentions-legales",
+  },
 };
 
 export default function MentionsLegalesPage() {

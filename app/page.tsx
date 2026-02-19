@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getWPPosts } from "@/lib/data/wordpress";
 import { ArticleCard } from "@/components/ArticleCard";
-import { getAllVilles, getVillesAvecDVF, generateSlug, formatPrix, formatNumber } from "@/lib/data/territorial";
+import { getAllVilles, getVillesAvecDVF, generateVilleSlug, formatPrix, formatNumber } from "@/lib/data/territorial";
 
 export const metadata: Metadata = {
   alternates: {
@@ -151,7 +151,7 @@ export default async function HomePage() {
               {villesPopulaires.map((ville) => (
                 <Link
                   key={ville.code_insee}
-                  href={`/ville/${generateSlug(ville.nom)}`}
+                  href={`/ville/${generateVilleSlug(ville)}`}
                   className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:border-indigo-300 transition-all group"
                 >
                   <h3 className="font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors mb-1">

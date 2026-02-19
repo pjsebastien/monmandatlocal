@@ -58,7 +58,7 @@ export default function VillesPage() {
           </nav>
 
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Explorez le marché immobilier
+            Prix immobilier par ville en France
           </h1>
           <p className="text-xl text-slate-300 max-w-2xl">
             {data.statistiques_globales.nb_villes} villes françaises avec prix au m²,

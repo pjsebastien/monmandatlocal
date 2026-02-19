@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllWPPosts } from "@/lib/data/wordpress";
 import { isReservedSlug } from "@/lib/config";
-import { getAllVilles, generateSlug } from "@/lib/data/territorial";
+import { getAllVilles, generateVilleSlug } from "@/lib/data/territorial";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
@@ -22,12 +22,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/villes`,
-      lastModified: staticDate,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/quartiers`,
       lastModified: staticDate,
       changeFrequency: "weekly",
       priority: 0.9,
@@ -107,7 +101,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Pages des villes (prix immobilier)
   const villes = getAllVilles();
   const villePages: MetadataRoute.Sitemap = villes.map((ville) => ({
-    url: `${baseUrl}/ville/${generateSlug(ville.nom)}`,
+    url: `${baseUrl}/ville/${generateVilleSlug(ville)}`,
     lastModified: dataDate,
     changeFrequency: "weekly" as const,
     priority: 0.8,
@@ -115,7 +109,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Pages estimation par ville
   const estimationVillePages: MetadataRoute.Sitemap = villes.map((ville) => ({
-    url: `${baseUrl}/estimation/${generateSlug(ville.nom)}`,
+    url: `${baseUrl}/estimation/${generateVilleSlug(ville)}`,
     lastModified: dataDate,
     changeFrequency: "weekly" as const,
     priority: 0.8,

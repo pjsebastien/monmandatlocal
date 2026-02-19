@@ -5,7 +5,7 @@ import {
   getVilleBySlug,
   getVillesAvecDVF,
   getAllVilles,
-  generateSlug,
+  generateVilleSlug,
   formatPrix,
   formatNumber,
 } from "@/lib/data/territorial";
@@ -20,7 +20,7 @@ type Props = {
 export async function generateStaticParams() {
   const villes = getVillesAvecDVF();
   return villes.map((ville) => ({
-    slug: generateSlug(ville.nom),
+    slug: generateVilleSlug(ville),
   }));
 }
 
@@ -186,10 +186,10 @@ export default async function VillePrixPage({ params }: Props) {
       />
 
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white">
+      {/* Hero */}
+      <div className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white" role="banner">
         <div className="max-w-5xl mx-auto px-4 py-12">
-          <nav className="mb-6">
+          <nav className="mb-6" aria-label="Fil d'Ariane">
             <ol className="flex items-center gap-2 text-indigo-200 text-sm">
               <li>
                 <Link href="/" className="hover:text-white">
@@ -261,7 +261,7 @@ export default async function VillePrixPage({ params }: Props) {
             </div>
           )}
         </div>
-      </header>
+      </div>
 
       <main className="max-w-5xl mx-auto px-4 py-12">
         {/* Prix au m² */}
@@ -950,7 +950,7 @@ function VilleSuggereeCard({ ville }: { ville: { nom: string; code_insee: string
 
   return (
     <Link
-      href={`/ville/${generateSlug(ville.nom)}`}
+      href={`/ville/${generateVilleSlug(ville)}`}
       className="block bg-white rounded-xl border border-gray-200 p-4 hover:shadow-lg hover:border-indigo-400 transition-all group"
     >
       <div className="flex items-start justify-between gap-2 mb-2">

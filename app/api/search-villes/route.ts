@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAllVilles, generateSlug } from "@/lib/data/territorial";
+import { getAllVilles, generateVilleSlug } from "@/lib/data/territorial";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
     .slice(0, 6)
     .map((ville) => ({
       nom: ville.nom,
-      slug: generateSlug(ville.nom),
+      slug: generateVilleSlug(ville),
       code_insee: ville.code_insee,
       departement: {
         code: ville.departement.code,

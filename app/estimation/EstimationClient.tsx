@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
-import { generateSlug, formatPrix } from "@/lib/data/territorial-types";
+import { generateVilleSlug, formatPrix } from "@/lib/data/territorial-types";
 import type { Ville } from "@/lib/data/territorial-types";
 
 type VilleLight = Pick<Ville, "nom" | "code_insee" | "departement" | "region" | "dvf">;
@@ -162,7 +162,7 @@ export function EstimationClient({ villes, regions }: EstimationClientProps) {
                 return (
                   <Link
                     key={ville.code_insee}
-                    href={`/estimation/${generateSlug(ville.nom)}`}
+                    href={`/estimation/${generateVilleSlug(ville)}`}
                     onClick={() => setShowSuggestions(false)}
                     className={`flex items-center justify-between px-4 py-3 hover:bg-emerald-50 transition-colors ${
                       index !== searchSuggestions.length - 1 ? "border-b border-gray-100" : ""
@@ -322,7 +322,7 @@ export function EstimationClient({ villes, regions }: EstimationClientProps) {
                     return (
                       <Link
                         key={ville.code_insee}
-                        href={`/estimation/${generateSlug(ville.nom)}`}
+                        href={`/estimation/${generateVilleSlug(ville)}`}
                         className={`block p-3 bg-white rounded-lg border hover:shadow-md transition-all group ${
                           isEstimation
                             ? "border-amber-200 hover:border-amber-400"

@@ -7,12 +7,22 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/quartiers",
   },
+  openGraph: {
+    title: "Prix immobilier par quartier - Données IRIS par ville",
+    description:
+      "Explorez les prix immobiliers et données démographiques par quartier (IRIS). Comparez les prix au m² entre quartiers.",
+    url: "/quartiers",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function QuartiersPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-4">Explorer par quartier</h1>
+      <h1 className="text-4xl font-bold mb-4">Prix immobilier par quartier : données IRIS par ville</h1>
       <p className="text-xl text-gray-600 mb-8">
         Accédez aux données détaillées par quartier (IRIS) pour affiner votre
         compréhension du marché local.

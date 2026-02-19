@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/faq",
   },
+  openGraph: {
+    title: "FAQ - Prix immobilier, données DVF et estimation",
+    description:
+      "Trouvez les réponses à vos questions sur les prix immobiliers, les données DVF et les estimations de MonMandatLocal.fr.",
+    url: "/faq",
+  },
 };
 
 const faqs = [

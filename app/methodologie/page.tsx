@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/methodologie",
   },
+  openGraph: {
+    title: "Méthodologie - MonMandatLocal.fr",
+    description:
+      "Découvrez comment MonMandatLocal.fr traite et présente les données immobilières. Calcul des prix, sources et traitements.",
+    url: "/methodologie",
+  },
 };
 
 export default function MethodologiePage() {

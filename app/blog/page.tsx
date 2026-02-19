@@ -2,27 +2,21 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getWPPosts, formatWPDate } from "@/lib/data/wordpress";
+import { getVilleBySlug, formatPrix } from "@/lib/data/territorial";
 
 export const metadata: Metadata = {
   title: "Blog immobilier - Actualités et conseils",
   description:
     "Découvrez nos articles sur le marché immobilier local : actualités, guides pratiques, conseils pour acheteurs et vendeurs. Informations basées sur des données officielles.",
-  keywords: [
-    "blog immobilier",
-    "actualités immobilier",
-    "conseils achat immobilier",
-    "marché immobilier France",
-    "prix immobilier",
-  ],
   openGraph: {
     title: "Blog immobilier - MonMandatLocal.fr",
     description:
       "Actualités et conseils sur le marché immobilier local. Guides pratiques pour acheteurs et vendeurs.",
     type: "website",
-    url: "https://www.monmandatlocal.fr/blog",
+    url: "/blog",
   },
   alternates: {
-    canonical: "https://www.monmandatlocal.fr/blog",
+    canonical: "/blog",
   },
 };
 
@@ -74,7 +68,7 @@ export default async function BlogPage({ searchParams }: Props) {
             Actualités immobilières
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Notre Blog
+            Blog immobilier : actualités et conseils du marché local
           </h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
             Conseils, guides et actualités pour mieux comprendre le marché
@@ -178,25 +172,26 @@ export default async function BlogPage({ searchParams }: Props) {
               </p>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                {[
-                  { ville: "Paris", slug: "paris", prix: "10 500 €/m²" },
-                  { ville: "Lyon", slug: "lyon", prix: "5 200 €/m²" },
-                  { ville: "Marseille", slug: "marseille", prix: "3 400 €/m²" },
-                  { ville: "Bordeaux", slug: "bordeaux", prix: "4 800 €/m²" },
-                  { ville: "Toulouse", slug: "toulouse", prix: "3 600 €/m²" },
-                  { ville: "Nantes", slug: "nantes", prix: "4 100 €/m²" },
-                  { ville: "Nice", slug: "nice", prix: "5 100 €/m²" },
-                  { ville: "Lille", slug: "lille", prix: "3 500 €/m²" },
-                ].map(({ ville, slug, prix }) => (
+                {["paris", "lyon", "marseille", "bordeaux", "toulouse", "nantes", "nice", "lille"]
+                  .map((slug) => {
+                    const v = getVilleBySlug(slug);
+                    if (!v) return null;
+                    const prix = v.dvf?.prix_m2_median_global;
+                    return { nom: v.nom, slug, prix };
+                  })
+                  .filter(Boolean)
+                  .map((item) => (
                   <Link
-                    key={slug}
-                    href={`/estimation/${slug}`}
+                    key={item!.slug}
+                    href={`/estimation/${item!.slug}`}
                     className="group bg-white border border-gray-200 rounded-xl p-4 hover:border-emerald-400 hover:shadow-md transition-all"
                   >
                     <p className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">
-                      {ville}
+                      {item!.nom}
                     </p>
-                    <p className="text-sm text-gray-500">{prix}</p>
+                    <p className="text-sm text-gray-500">
+                      {item!.prix ? `${formatPrix(item!.prix)}/m²` : "Prix non disponible"}
+                    </p>
                   </Link>
                 ))}
               </div>

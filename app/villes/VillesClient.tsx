@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
-import { generateSlug, formatPrix, formatNumber } from "@/lib/data/territorial-types";
+import { generateVilleSlug, formatPrix, formatNumber } from "@/lib/data/territorial-types";
 import type { Ville, Departement, Region, DVFVille } from "@/lib/data/territorial-types";
 
 type VilleLight = Pick<Ville, "nom" | "code_insee" | "departement" | "region" | "dvf">;
@@ -197,7 +197,7 @@ export function VillesClient({ villes, regions, departements }: VillesClientProp
                 return (
                   <Link
                     key={ville.code_insee}
-                    href={`/ville/${generateSlug(ville.nom)}`}
+                    href={`/ville/${generateVilleSlug(ville)}`}
                     onClick={() => setShowSuggestions(false)}
                     className={`flex items-center justify-between px-4 py-3 hover:bg-emerald-50 transition-colors ${
                       index !== searchSuggestions.length - 1 ? "border-b border-gray-100" : ""
@@ -484,7 +484,7 @@ export function VillesClient({ villes, regions, departements }: VillesClientProp
 }
 
 function VilleCard({ ville }: { ville: VilleLight }) {
-  const slug = generateSlug(ville.nom);
+  const slug = generateVilleSlug(ville);
   const hasDVF = ville.dvf && ville.dvf.prix_m2_median_global !== null;
   const isEstimation = ville.dvf?.is_estimation ?? false;
 
@@ -557,7 +557,7 @@ function VilleCard({ ville }: { ville: VilleLight }) {
 }
 
 function VilleRow({ ville }: { ville: VilleLight }) {
-  const slug = generateSlug(ville.nom);
+  const slug = generateVilleSlug(ville);
   const hasDVF = ville.dvf && ville.dvf.prix_m2_median_global !== null;
   const isEstimation = ville.dvf?.is_estimation ?? false;
 

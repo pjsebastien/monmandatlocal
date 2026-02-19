@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/politique-confidentialite",
   },
+  openGraph: {
+    title: "Politique de confidentialité - MonMandatLocal.fr",
+    description:
+      "Politique de confidentialité de MonMandatLocal.fr - Gestion des données personnelles et cookies.",
+    url: "/politique-confidentialite",
+  },
 };
 
 export default function PolitiqueConfidentialitePage() {

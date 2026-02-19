@@ -5,7 +5,7 @@ import {
   getVilleBySlug,
   getVillesAvecDVF,
   getAllVilles,
-  generateSlug,
+  generateVilleSlug,
   formatPrix,
 } from "@/lib/data/territorial";
 import { EstimationForm } from "./EstimationForm";
@@ -20,7 +20,7 @@ type Props = {
 export async function generateStaticParams() {
   const villes = getVillesAvecDVF();
   return villes.map((ville) => ({
-    ville: generateSlug(ville.nom),
+    ville: generateVilleSlug(ville),
   }));
 }
 
@@ -176,10 +176,10 @@ export default async function EstimationVillePage({ params }: Props) {
       />
 
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white">
+      {/* Hero */}
+      <div className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white" role="banner">
         <div className="max-w-4xl mx-auto px-4 py-12">
-          <nav className="mb-6">
+          <nav className="mb-6" aria-label="Fil d'Ariane">
             <ol className="flex items-center gap-2 text-emerald-200 text-sm">
               <li>
                 <Link href="/" className="hover:text-white">
@@ -215,7 +215,7 @@ export default async function EstimationVillePage({ params }: Props) {
             </span>
           </div>
         </div>
-      </header>
+      </div>
 
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Introduction pédagogique */}
@@ -677,7 +677,7 @@ function VilleSuggereeCard({ ville }: { ville: { nom: string; code_insee: string
 
   return (
     <Link
-      href={`/estimation/${generateSlug(ville.nom)}`}
+      href={`/estimation/${generateVilleSlug(ville)}`}
       className={`block bg-white rounded-xl border p-4 hover:shadow-lg transition-all group ${
         isEstimation ? "border-amber-200 hover:border-amber-400" : "border-gray-200 hover:border-emerald-400"
       }`}

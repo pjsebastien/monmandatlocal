@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/sources",
   },
+  openGraph: {
+    title: "Sources de données - MonMandatLocal.fr",
+    description:
+      "Découvrez les sources officielles utilisées par MonMandatLocal.fr : DVF, INSEE, cadastre.",
+    url: "/sources",
+  },
 };
 
 export default function SourcesPage() {

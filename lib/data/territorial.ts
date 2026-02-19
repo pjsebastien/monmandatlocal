@@ -13,7 +13,7 @@ import path from "path";
 export * from "./territorial-types";
 
 import type { DataTerritoriale, Ville } from "./territorial-types";
-import { generateSlug } from "./territorial-types";
+import { generateSlug, generateVilleSlug } from "./territorial-types";
 
 // Cache pour éviter de recharger le fichier à chaque requête
 let dataCache: DataTerritoriale | null = null;
@@ -63,7 +63,7 @@ export function getVillesAvecDVF(): Ville[] {
  */
 export function getVilleBySlug(slug: string): Ville | null {
   const data = loadTerritorialData();
-  return data.villes.find((ville) => generateSlug(ville.nom) === slug) || null;
+  return data.villes.find((ville) => generateVilleSlug(ville) === slug) || null;
 }
 
 /**

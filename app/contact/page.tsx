@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/contact",
   },
+  openGraph: {
+    title: "Contactez-nous - MonMandatLocal.fr",
+    description:
+      "Une question sur les prix immobiliers ou nos données ? Contactez l'équipe MonMandatLocal.fr.",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {

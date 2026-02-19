@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/a-propos",
   },
+  openGraph: {
+    title: "À propos de MonMandatLocal.fr - Données immobilières officielles",
+    description:
+      "Découvrez MonMandatLocal.fr, un site d'information sur le marché immobilier local basé sur des données officielles DVF et INSEE.",
+    url: "/a-propos",
+  },
 };
 
 export default function AProposPage() {

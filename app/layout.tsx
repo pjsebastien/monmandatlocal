@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -11,15 +17,6 @@ export const metadata: Metadata = {
   },
   description:
     "Accédez aux données officielles du marché immobilier français : prix de vente, loyers, statistiques par ville et quartier. Informations factuelles pour particuliers.",
-  keywords: [
-    "marché immobilier",
-    "prix immobilier",
-    "données immobilières",
-    "statistiques logement",
-    "quartier",
-    "ville",
-    "DVF",
-  ],
   authors: [{ name: "MonMandatLocal.fr" }],
   icons: {
     icon: "/favicon.png",
@@ -43,9 +40,17 @@ export const metadata: Metadata = {
     images: ["/logo.png"],
   },
   metadataBase: new URL("https://www.monmandatlocal.fr"),
+  alternates: {
+    languages: {
+      "fr-FR": "https://www.monmandatlocal.fr",
+    },
+  },
   robots: {
     index: true,
     follow: true,
+  },
+  other: {
+    "google-site-verification": "",
   },
 };
 
@@ -56,7 +61,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className="antialiased">
+      <head>
+        <link rel="preconnect" href="https://blog.monmandatlocal.fr" />
+        <link
+          rel="dns-prefetch"
+          href="https://blog.monmandatlocal.fr"
+        />
+      </head>
+      <body className={`${inter.className} antialiased`}>
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-1">{children}</main>

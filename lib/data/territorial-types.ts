@@ -174,6 +174,20 @@ export function generateSlug(nom: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+/** Noms de villes homonymes nécessitant une désambiguïsation par département */
+const HOMONYM_VILLES = new Set(["Saint-Denis"]);
+
+/**
+ * Génère un slug unique pour une ville, en ajoutant le code département
+ * pour les villes homonymes (ex: Saint-Denis → saint-denis-93 / saint-denis-974)
+ */
+export function generateVilleSlug(ville: Pick<Ville, "nom" | "departement">): string {
+  if (HOMONYM_VILLES.has(ville.nom)) {
+    return generateSlug(`${ville.nom} ${ville.departement.code}`);
+  }
+  return generateSlug(ville.nom);
+}
+
 /**
  * Calcule un facteur de modulation subtil basé sur les critères
  * Les impacts sont volontairement limités et combinés de manière non linéaire
